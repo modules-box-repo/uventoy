@@ -47,13 +47,16 @@
     </div>
     <div class="status"><span id="statusTxt">Ready</span><span id="pctTxt">0%</span></div>
     <div class="bar"><div id="bar" style="width:0%"></div></div>
+    <details class="logbox">
+      <summary>Log</summary>
+      <pre id="logTxt"></pre>
+    </details>
   </section>
 
   <details class="card opts anim" style="--d:.15s">
     <summary>Options</summary>
     <div class="optgrid">
       <label class="switch"><input type="checkbox" id="secureBoot" checked><span>Secure Boot support</span></label>
-      <label class="switch"><input type="checkbox" id="align4k" checked><span>Align partitions with 4KB</span></label>
     </div>
     <div class="segrow">
       <span class="lbl">Partition style</span>
@@ -63,20 +66,29 @@
       </div>
     </div>
     <div class="optgrid">
-      <label class="switch"><input type="checkbox" id="preserveCk"><span>Preserve space at end of disk</span></label>
+      <label class="field"><span>Install mode</span>
+        <select id="installMode">
+          <option value="install">Install (erase disk)</option>
+          <option value="force">Force install (erase disk)</option>
+          <option value="nondestructive">Non-destructive install</option>
+        </select>
+      </label>
+      <label class="field"><span>Partition label</span>
+        <input id="labelVal" type="text" value="Ventoy" maxlength="11" autocomplete="off" spellcheck="false">
+      </label>
+      <label class="switch"><input type="checkbox" id="preserveCk"><span>Reserve space at end of disk</span></label>
     </div>
     <div class="presrow">
       <input id="preserveVal" type="number" min="1" max="999999" inputmode="numeric" placeholder="0" disabled>
-      <select id="preserveUnit" disabled><option value="GB">GB</option><option value="MB">MB</option></select>
+      <span class="unit">MiB</span>
     </div>
   </details>
 
   <section class="actions anim" style="--d:.25s">
     <button id="installBtn" class="btn danger" disabled>Install</button>
     <button id="updateBtn" class="btn primary" disabled>Update</button>
-    <button id="cleanBtn" class="btn ghost">Clear Ventoy</button>
   </section>
-  <p class="hint anim" style="--d:.3s">Install wipes all data. Update is safe and keeps ISO files.</p>
+  <p class="hint anim" style="--d:.3s">Install erases the selected disk. Update keeps existing ISO files.</p>
 </main>
 
 <dialog id="dlg">

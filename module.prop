@@ -1,7 +1,7 @@
 id=uventoy
 name=UVentoy
 icon=icon.png
-description=Unofficial Ventoy: Install to SD card / USB device now!
+description=Unofficial Ventoy: Install to USB device now!
 author=YasserNull
 version=v1.0.0
 versionCode=1

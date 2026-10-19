@@ -1,0 +1,9 @@
+decompress Plugson.xz
+decompress V2DServer.xz
+decompress ash.xz
+decompress hexdump.xz
+decompress mkexfatfs.xz
+decompress mount.exfat-fuse.xz
+decompress vlnk.xz
+decompress vtoycli.xz
+decompress vtoygpt.xz
