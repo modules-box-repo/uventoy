@@ -40,16 +40,20 @@ if [ -z "$VENTOY_URL" ]; then
     echo -e "${RED}Failed to fetch Ventoy release URL${NC}"
     exit 1
 fi
-wget -O ventoy-latest.tar.gz "$VENTOY_URL" \
+wget -c -O ventoy-latest.tar.gz "$VENTOY_URL" \
     && echo -e "${GREEN}[5/5] Ventoy downloaded successfully${NC}"
 
 echo -e "${BLUE}[5/5] Extracting Ventoy archive...${NC}"
-EXTRACTED_DIR=$(tar -tzf ventoy-latest.tar.gz | head -1 | cut -d '/' -f 1)
+
 tar -xzf ventoy-latest.tar.gz -C .
-if [ -n "$EXTRACTED_DIR" ] && [ "$EXTRACTED_DIR" != "ventoy" ]; then
-    rm -rf ventoy
+
+EXTRACTED_DIR=$(find . -maxdepth 1 -type d -name 'ventoy-*' ! -name 'ventoy' | head -1)
+
+if [ -n "$EXTRACTED_DIR" ]; then
+    rm -rf ventoy ventoy-latest.tar.gz
     mv "$EXTRACTED_DIR" ventoy
 fi
+
 echo -e "${GREEN}[5/5] Ventoy extracted and renamed to 'ventoy'${NC}"
 
 echo -e "${GREEN}All done.${NC}"
